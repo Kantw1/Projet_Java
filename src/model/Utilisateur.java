@@ -1,4 +1,4 @@
-package gestionTri;
+package model;
 
 public class Utilisateur {
     private int id;
