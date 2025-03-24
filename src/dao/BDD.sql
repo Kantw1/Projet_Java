@@ -1,5 +1,8 @@
+CREATE DATABASE BDD;
+USE BDD;
+
 CREATE TABLE Poubelle (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     CapaciteMax INT,
     Emplacement VARCHAR(255),
     TypePoubelle VARCHAR(255),
@@ -9,30 +12,38 @@ CREATE TABLE Poubelle (
 CREATE TABLE Depot (
     id INT PRIMARY KEY AUTO_INCREMENT,
     Type VARCHAR(255),
-    Classe VARCHAR(255),
+    Poids VARCHAR(255),
     Quantite INT,
     HeureDepot DATETIME,
-    Points INT
+    Points INT,
+    PoubelleID INT,
+    UtilisateurID INT,
+    FOREIGN KEY (PoubelleID) REFERENCES Poubelle(id),
+    FOREIGN KEY (UtilisateurID) REFERENCES Utilisateur(id)
 );
 
+
 CREATE TABLE Utilisateur (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     Nom VARCHAR(255),
     ProfilEco INT,
     CodeAcces INT
 );
 
+
 CREATE TABLE Produit (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     Nom VARCHAR(255),
     PointsNecessaires INT
 );
 
+
 CREATE TABLE CategorieProduit (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     Nom VARCHAR(255),
-    tauxConversion INT
+    TauxConversion INT
 );
+
 
 CREATE TABLE ProduitCategorie (
     ProduitID INT,
@@ -42,15 +53,18 @@ CREATE TABLE ProduitCategorie (
     FOREIGN KEY (CategorieID) REFERENCES CategorieProduit(id)
 );
 
+
 CREATE TABLE BonDeCommande (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     UtilisateurID INT,
     MontantTotal DOUBLE,
     EtatCommande VARCHAR(255),
-    CommerceID INT,
     DateCommande DATE,
-    FOREIGN KEY (UtilisateurID) REFERENCES Utilisateur(id)
+    CommerceID INT,
+    FOREIGN KEY (UtilisateurID) REFERENCES Utilisateur(id),
+    FOREIGN KEY (CommerceID) REFERENCES Commerce(id)
 );
+
 
 CREATE TABLE Commerce (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -59,11 +73,13 @@ CREATE TABLE Commerce (
     FOREIGN KEY (ContratID) REFERENCES ContratPartenariat(id)
 );
 
+
 CREATE TABLE ContratPartenariat (
     id INT PRIMARY KEY AUTO_INCREMENT,
     DateDebut DATE,
     DateFin DATE
 );
+
 
 CREATE TABLE CentreDeTri (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -71,6 +87,40 @@ CREATE TABLE CentreDeTri (
     Adresse VARCHAR(255)
 );
 
-ALTER TABLE Depot ADD COLUMN PoubelleID INT, ADD FOREIGN KEY (PoubelleID) REFERENCES Poubelle(id);
-ALTER TABLE BonDeCommande ADD COLUMN CommerceID INT, ADD FOREIGN KEY (CommerceID) REFERENCES Commerce(id);
-ALTER TABLE Produit ADD COLUMN UtilisateurID INT, ADD FOREIGN KEY (UtilisateurID) REFERENCES Utilisateur(id);
+
+CREATE TABLE CommandeProduit (
+    BonDeCommandeID INT,
+    ProduitID INT,
+    PRIMARY KEY (BonDeCommandeID, ProduitID),
+    FOREIGN KEY (BonDeCommandeID) REFERENCES BonDeCommande(id),
+    FOREIGN KEY (ProduitID) REFERENCES Produit(id)
+);
+
+
+CREATE TABLE CentrePoubelle (
+    CentreID INT,
+    PoubelleID INT,
+    PRIMARY KEY (CentreID, PoubelleID),
+    FOREIGN KEY (CentreID) REFERENCES CentreDeTri(id),
+    FOREIGN KEY (PoubelleID) REFERENCES Poubelle(id)
+);
+
+
+CREATE TABLE CommerceCategorieProduit (
+    CommerceID INT,
+    CategorieID INT,
+    PRIMARY KEY (CommerceID, CategorieID),
+    FOREIGN KEY (CommerceID) REFERENCES Commerce(id),
+    FOREIGN KEY (CategorieID) REFERENCES CategorieProduit(id)
+);
+
+
+CREATE TABLE HistoriqueDepot (
+    UtilisateurID INT,
+    DepotID INT,
+    PRIMARY KEY (UtilisateurID, DepotID),
+    FOREIGN KEY (UtilisateurID) REFERENCES Utilisateur(id),
+    FOREIGN KEY (DepotID) REFERENCES Depot(id)
+);
+
+
