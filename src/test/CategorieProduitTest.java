@@ -6,34 +6,34 @@ import model.Produit;
 public class CategorieProduitTest {
 
     public static void runTest() {
-        System.out.println("🧪=== TEST CATEGORIE PRODUIT ===");
+        System.out.println("=== TEST CATEGORIE PRODUIT ===");
 
-        // Création de la catégorie
+        //création de la catégorie zero dechet pour verifier que la categorisation fonctionne
         CategorieProduit zeroDechet = new CategorieProduit("Zéro Déchet", 80);
-        System.out.println("📁 Catégorie créée : " + zeroDechet.getNom() + " | Taux : " + zeroDechet.getTauxConversion());
+        System.out.println("catégoerie créée : " + zeroDechet.getNom() + " | Taux : " + zeroDechet.getTauxConversion());
 
-        // Création de produits
-        Produit p1 = new Produit("Brosse à dents en bambou", 90);
-        Produit p2 = new Produit("Éponge lavable", 60);
+        //rcréation de produits
+        Produit p1 = new Produit("brosse à dent recyclée", 90);
+        Produit p2 = new Produit("éponge reutilisable", 60);
 
-        // Association
+        //on associe les produit
         zeroDechet.associerProduit(p1);
         zeroDechet.associerProduit(p2);
 
-        // Vérification
-        System.out.println("📦 Produits dans la catégorie '" + zeroDechet.getNom() + "' :");
+        //on vérifie 
+        System.out.println("Voici les Produits dans la catégorie '" + zeroDechet.getNom() + "' :");
         for (Produit p : zeroDechet.getProduits()) {
             System.out.println(" - " + p.getNom());
         }
 
-        // Test de la méthode verifierProduit
-        System.out.println("🔍 Vérification d'association :");
-        System.out.println("Produit p1 associé ? " + zeroDechet.verifierProduit(p1)); // true
-        System.out.println("Produit p2 associé ? " + zeroDechet.verifierProduit(p2)); // true
-        Produit p3 = new Produit("Tasse en inox", 70);
-        System.out.println("Produit p3 associé ? " + zeroDechet.verifierProduit(p3)); // false
+        // on test la methode verifierProduit
+        System.out.println("vérification d'association :");
+        System.out.println("est ce qeue le produit p1 associé ? " + zeroDechet.verifierProduit(p1)); // true
+        System.out.println("produit p2? " + zeroDechet.verifierProduit(p2)); // true
+        Produit p3 = new Produit("tasse pour thé", 70);
+        System.out.println("le produit p3? " + zeroDechet.verifierProduit(p3)); // false
 
-        System.out.println("✅ Fin test CategorieProduit\n");
+        System.out.println("fin test categorieproduit, marche bien\n");
     }
 }
 
