@@ -5,10 +5,10 @@ import model.*;
 public class CentreDeTriTest {
 
     public static void runTest() {
-        System.out.println("\n\uD83E\uDDF9=== TEST : CENTRE DE TRI ===");
+        System.out.println("\n=== TEST : CENTRE DE TRI ===");
 
         // Création du centre de tri
-        CentreDeTri centre = new CentreDeTri("Centre Nord", "12 rue des Fleurs");
+        CentreDeTri centre = new CentreDeTri("Centre Nord", "1 rue de EISTI Cergy");
         System.out.println("📍 Centre : " + centre.getNom() + " | Adresse : " + centre.getAdresse());
 
         // Ajout de poubelles
@@ -18,14 +18,14 @@ public class CentreDeTriTest {
         centre.gererPoubelle(p2, true);
 
         // Ajout de commerce
-        Commerce c1 = new Commerce("BioShop");
-        Commerce c2 = new Commerce("EcoMarket");
+        Commerce c1 = new Commerce("AhmedMarché");
+        Commerce c2 = new Commerce("EcoQuentin");
         centre.getCommerce().add(c1);
         centre.getCommerce().add(c2);
 
         // Simuler dépôts
-        Utilisateur u = new Utilisateur("Lina");
-        u.AjouterPoints(20); // pour éventuel test
+        Utilisateur u = new Utilisateur("Capucine");
+        u.AjouterPoints(20);
         u.DeposerDechets(p1, NatureDechet.VERRE, 10);
         u.DeposerDechets(p2, NatureDechet.PLASTIQUE, 4);
 
@@ -35,9 +35,9 @@ public class CentreDeTriTest {
         // Statistiques
         centre.genererStatistiques();
 
-        // Traitement des rejets (placeholder)
+        // Traitement des rejets
         centre.traiterRejet();
 
-        System.out.println("=== ✅ FIN TEST CENTRE DE TRI ===\n");
+        System.out.println("=== FIN TEST CENTRE DE TRI ===\n");
     }
 }
