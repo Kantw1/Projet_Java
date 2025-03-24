@@ -21,26 +21,26 @@ public class UtilisateurTest {
 
         // Achat de produit
         boolean achat1 = u.AcheterProduits(p1);
-        boolean achat2 = u.AcheterProduits(p2); // devrait échouer (manque de points)
+        boolean achat2 = u.AcheterProduits(p2); // devrait échouer car pas assez de point
 
         System.out.println("Achat 1 (" + p1.getNom() + ") : " + (achat1 ? "✅" : "❌"));
         System.out.println("Achat 2 (" + p2.getNom() + ") : " + (achat2 ? "✅" : "❌"));
         System.out.println("Points restants : " + u.GetPtsFidelite());
 
-        // Création d'une poubelle
+        // Création de poubelle jaun
         Poubelle poubelleJaune = new Poubelle(200, "Rue des Lilas", "JAUNE");
 
-        // Dépôt conforme (plastique dans poubelle jaune)
+        // Dépôt conforme 
         u.DeposerDechets(poubelleJaune, NatureDechet.PLASTIQUE, 5); // 5 quantits de plastique
 
-        // Dépôt non conforme (verre dans poubelle jaune)
+        // Dépôt non conform
         u.DeposerDechets(poubelleJaune, NatureDechet.VERRE, 2); // devrait retirer des points
 
-        // Affichage de l'historique
+        // affichage de l'historique
         System.out.println("\nHistorique de dépôts :");
         u.ConsulterHistorique();
 
-        // Résumé final
+        // fin
         System.out.println("\nRésumé :");
         System.out.println("Points fidélité finaux : " + u.GetPtsFidelite());
         System.out.println("Produits achetés : " + u.GetListProduits());
