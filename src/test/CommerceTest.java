@@ -9,10 +9,10 @@ import java.util.ArrayList;
 public class CommerceTest {
 
     public static void runTest() {
-        System.out.println("\uD83D\uDECD\uFE0F=== TEST COMMERCE ===");
+        System.out.println("\n=== TEST COMMERCE ===");
 
         // 1. Création d'un commerce
-        Commerce commerce = new Commerce("EcoBoutique");
+        Commerce commerce = new Commerce("ShopEtwally");
         System.out.println("Nom du commerce : " + commerce.getNom());
 
         // 2. Création d'un contrat de partenariat
@@ -31,9 +31,9 @@ public class CommerceTest {
         System.out.println("Contrat valide ? " + (valide ? "✅" : "❌"));
 
         // 5. Création d'un utilisateur et de produits
-        Utilisateur client = new Utilisateur("Lina");
+        Utilisateur client = new Utilisateur("Ahmed");
         client.AjouterPoints(100);
-        Produit p = new Produit("Eponge réutilisable", 60);
+        Produit p = new Produit("éponge réutilisable", 60);
 
         // 6. Création d'une commande
         BonDeCommande commande = new BonDeCommande(client, commerce);
@@ -48,7 +48,7 @@ public class CommerceTest {
             System.out.println(c);
         }
 
-        System.out.println("\uD83D\uDCB1 Points restants utilisateur : " + client.GetPtsFidelite());
-        System.out.println("=== \u2705 FIN TEST COMMERCE ===");
+        System.out.println("Points restants utilisateur : " + client.GetPtsFidelite());
+        System.out.println("=== FIN TEST COMMERCE ===");
     }
 }
