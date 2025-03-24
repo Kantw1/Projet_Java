@@ -5,7 +5,7 @@ public enum NatureDechet {
     VERRE(0.5),      // pv
     CARTON(0.2),     // pc
     METAL(0.6),      // pm
-    PAPIER(0.1);     // pour poubelle BLEUE 🔵
+    PAPIER(0.1);     // pour poubelle BLEUE
 
     private final double poidsUnitaire;
 
