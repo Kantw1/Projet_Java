@@ -44,14 +44,14 @@ public class CentreDeTri {
     }
 
     public void collecterDechets() {
-        System.out.println("\n♻️ Collecte des déchets par centre de tri :");
+        System.out.println("\n♻Collecte des déchets par le centre de tri :");
         for (Poubelle p : listePoubelle) {
             System.out.println(" - Poubelle " + p.getId() + " à " + p.getEmplacement() + ": " + p.getQuantiteActuelle() + " unités");
         }
     }
 
     public void genererStatistiques() {
-        System.out.println("\n📊 Statistiques du centre de tri :");
+        System.out.println("\nStatistiques du centre de tri :");
         int total = 0;
         for (Poubelle p : listePoubelle) {
             total += p.getQuantiteActuelle();
