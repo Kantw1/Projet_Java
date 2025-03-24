@@ -52,7 +52,7 @@ public class Poubelle {
 
     public void notifierCentreTri() {
         if (quantiteActuelle >= capaciteMax) {
-            System.out.println("⚠️ Poubelle " + id + " à " + emplacement + " est pleine !");
+            System.out.println("Poubelle " + id + " à " + emplacement + " est pleine !");
         }
     }
 
