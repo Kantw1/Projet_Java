@@ -19,7 +19,7 @@ public class Produit {
         this.categories = new ArrayList<>();
     }
 
-    // 🔹 Getters
+    // Getters
     public int getId() {
         return id;
     }
@@ -36,16 +36,16 @@ public class Produit {
         return categories;
     }
 
-    // 🔹 Associer une catégorie à un produit
+    // Associer une catégorie à un produit
     public void assignCategorie(CategorieProduit categorie) {
         if (!categories.contains(categorie)) {
             categories.add(categorie);
         }
     }
 
-    // 🔹 Méthode utilitaire pour lister les infos
+    // Méthode pour lister les infos
     public static void listerProduitsDisponibles(List<Produit> produits) {
-        System.out.println("🛒 Produits disponibles :");
+        System.out.println("Produits disponibles :");
         for (Produit p : produits) {
             System.out.println("- " + p.nom + " | " + p.pointsNecessaires + " points");
         }

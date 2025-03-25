@@ -25,7 +25,6 @@ public class Commerce {
     }
 
     public boolean VerifierConditionsContrat(ContratPartenariat contrat) {
-        // Logique basique : comparer la date ou les catégories concernées
         return contrat != null && !contrat.GetCategorie().isEmpty();
     }
 

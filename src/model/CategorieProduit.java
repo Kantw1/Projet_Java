@@ -35,7 +35,7 @@ public class CategorieProduit {
         return produits;
     }
 
-    // Associe un produit à cette catégorie (et réciproquement)
+    // Associe un produit à cette catégorie
     public void associerProduit(Produit p) {
         if (!produits.contains(p)) {
             produits.add(p);

@@ -17,7 +17,7 @@ public class CentreDeTri {
         this.listeCommerce = new ArrayList<>();
     }
 
-    // Getters UML
+    // Getters
     public String getNom() {
         return nom;
     }
@@ -34,7 +34,7 @@ public class CentreDeTri {
         return listeCommerce;
     }
 
-    // Méthodes UML
+    // Méthodes
     public void gererPoubelle(Poubelle p, boolean ajouter) {
         if (ajouter) {
             listePoubelle.add(p);
@@ -44,7 +44,7 @@ public class CentreDeTri {
     }
 
     public void collecterDechets() {
-        System.out.println("\n♻Collecte des déchets par le centre de tri :");
+        System.out.println("\nCollecte des déchets par le centre de tri :");
         for (Poubelle p : listePoubelle) {
             System.out.println(" - Poubelle " + p.getId() + " à " + p.getEmplacement() + ": " + p.getQuantiteActuelle() + " unités");
         }
@@ -62,6 +62,6 @@ public class CentreDeTri {
     }
 
     public void traiterRejet() {
-        System.out.println("🚨 Traitement des rejets : à implémenter selon la stratégie définie.");
+        System.out.println("a voir avec le prof si rajouter ou pas");
     }
-} 
+}

@@ -31,11 +31,11 @@ public class BonDeCommandeTest {
         commande.ajouterProduit(p1);
         commande.ajouterProduit(p2);
 
-        // 5. Vérification avant validation
+        // Vérifie avant validation
         System.out.println("Montant total : " + commande.getMontantTotal() + " pts");
         System.out.println("es ce que les soldes sont suffisant ? " + commande.verifierSoldeUtilisateur());
 
-        // 6. Valider la commande
+        //Valider la commande
         if (commande.validerCommande()) {
             System.out.println("commande validée");
             System.out.println("Points restants : " + client.GetPtsFidelite());

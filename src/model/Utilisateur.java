@@ -46,25 +46,25 @@ public class Utilisateur {
     }
     
 
-public void ConsulterHistorique() {
-    System.out.println("Historique des dépôts de " + nom + " :");
-    if (historiqueDepots.isEmpty()) {
-        System.out.println("cette personne n'a fait aucun depot ");
-    } else {
-        for (Depot d : historiqueDepots) {
-            System.out.println(" - " + d);
-        }
-    }
-}
-
-public void ConvertirPoint() {
-    if (PtsFidelite >= 100) {
-        System.out.println("100 points convertis en bon d'achat de 10€.");
-        RetirerPoints(100);
-    } else {
-        System.out.println("pas assez de points pour convertir :/");
-    }
-}
+	public void ConsulterHistorique() {
+	    System.out.println("Historique des dépôts de " + nom + " :");
+	    if (historiqueDepots.isEmpty()) {
+	        System.out.println("cette personne n'a fait aucun depot ");
+	    } else {
+	        for (Depot d : historiqueDepots) {
+	            System.out.println(" - " + d);
+	        }
+	    }
+	}
+	
+	public void ConvertirPoint() {
+	    if (PtsFidelite >= 100) {
+	        System.out.println("100 points convertis en bon d'achat de 10€");
+	        RetirerPoints(100);
+	    } else {
+	        System.out.println("pas assez de points pour convertir :/");
+	    }
+	}
 
 
     public boolean AcheterProduits(Produit p) {
@@ -78,7 +78,7 @@ public void ConvertirPoint() {
         }
     }
 
-    // Getters UML
+    // Getter
     public int GetCodeAcces() {
         return CodeAcces;
     }

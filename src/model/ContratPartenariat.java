@@ -17,7 +17,7 @@ public class ContratPartenariat {
     }
 
     public void DefinirRegleUtilisation() {
-        System.out.println("📋 Règles d'utilisation du contrat définies.");
+        System.out.println("Règles d'utilisation du contrat définies.");
     }
 
     public List<CategorieProduit> GetCategorie() {
