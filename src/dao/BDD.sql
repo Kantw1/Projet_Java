@@ -1,5 +1,19 @@
-CREATE DATABASE BDD;
+CREATE DATABASE IF NOT EXISTS BDD;
 USE BDD;
+
+-- Table de base
+CREATE TABLE Utilisateur (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    Nom VARCHAR(255),
+    PtsFidelite INT,
+    CodeAcces INT
+);
+
+CREATE TABLE CentreDeTri (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    Nom VARCHAR(255),
+    Adresse VARCHAR(255)
+);
 
 CREATE TABLE Poubelle (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -12,7 +26,7 @@ CREATE TABLE Poubelle (
 CREATE TABLE Depot (
     id INT PRIMARY KEY AUTO_INCREMENT,
     Type VARCHAR(255),
-    Poids VARCHAR(255),
+    Poids FLOAT,
     Quantite INT,
     HeureDepot DATETIME,
     Points INT,
@@ -22,42 +36,47 @@ CREATE TABLE Depot (
     FOREIGN KEY (UtilisateurID) REFERENCES Utilisateur(id)
 );
 
-
-CREATE TABLE Utilisateur (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    Nom VARCHAR(255),
-    ProfilEco INT,
-    CodeAcces INT
-);
-
-
-CREATE TABLE Produit (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    Nom VARCHAR(255),
-    PointsNecessaires INT
-);
-
-
 CREATE TABLE CategorieProduit (
     id INT PRIMARY KEY AUTO_INCREMENT,
     Nom VARCHAR(255),
-    TauxConversion INT
+    TauxConversion INT,
+    PtsNecessaire INT
 );
 
-
 CREATE TABLE ProduitCategorie (
-    ProduitID INT,
+	id INT,
+    Produit VARCHAR(255),
     CategorieID INT,
-    PRIMARY KEY (ProduitID, CategorieID),
-    FOREIGN KEY (ProduitID) REFERENCES Produit(id),
+    PRIMARY KEY (id, CategorieID),
     FOREIGN KEY (CategorieID) REFERENCES CategorieProduit(id)
 );
 
+CREATE TABLE Commerce (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    Nom VARCHAR(255),
+    ContratID INT,
+    CategorieProduitID INT,
+    FOREIGN KEY (CategorieProduitID) REFERENCES CategorieProduit(id)
+);
+
+CREATE TABLE ContratPartenariat (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    CommerceID INT,
+    CentreDeTriID INT,
+    DateDebut DATE,
+    DateFin DATE,
+    FOREIGN KEY (CentreDeTriID) REFERENCES CentreDeTri(id),
+    FOREIGN KEY (CommerceID) REFERENCES Commerce(id)
+);
+
+-- Mise à jour du lien Commerce ← Contrat après la création du contrat
+ALTER TABLE Commerce
+    ADD CONSTRAINT fk_contrat
+    FOREIGN KEY (ContratID) REFERENCES ContratPartenariat(id);
 
 CREATE TABLE BonDeCommande (
     id INT PRIMARY KEY AUTO_INCREMENT,
     UtilisateurID INT,
-    MontantTotal DOUBLE,
     EtatCommande VARCHAR(255),
     DateCommande DATE,
     CommerceID INT,
@@ -65,37 +84,13 @@ CREATE TABLE BonDeCommande (
     FOREIGN KEY (CommerceID) REFERENCES Commerce(id)
 );
 
-
-CREATE TABLE Commerce (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    Nom VARCHAR(255),
-    ContratID INT,
-    FOREIGN KEY (ContratID) REFERENCES ContratPartenariat(id)
-);
-
-
-CREATE TABLE ContratPartenariat (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    DateDebut DATE,
-    DateFin DATE
-);
-
-
-CREATE TABLE CentreDeTri (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    Nom VARCHAR(255),
-    Adresse VARCHAR(255)
-);
-
-
-CREATE TABLE CommandeProduit (
+CREATE TABLE CommandeCategorieProduit (
     BonDeCommandeID INT,
-    ProduitID INT,
-    PRIMARY KEY (BonDeCommandeID, ProduitID),
+    CategorieProduitID INT,
+    PRIMARY KEY (BonDeCommandeID, CategorieProduitID),
     FOREIGN KEY (BonDeCommandeID) REFERENCES BonDeCommande(id),
-    FOREIGN KEY (ProduitID) REFERENCES Produit(id)
+    FOREIGN KEY (CategorieProduitID) REFERENCES CategorieProduit(id)
 );
-
 
 CREATE TABLE CentrePoubelle (
     CentreID INT,
@@ -105,6 +100,13 @@ CREATE TABLE CentrePoubelle (
     FOREIGN KEY (PoubelleID) REFERENCES Poubelle(id)
 );
 
+CREATE TABLE CentreCommerce (
+    CentreID INT,
+    CommerceID INT,
+    PRIMARY KEY (CentreID, CommerceID),
+    FOREIGN KEY (CentreID) REFERENCES CentreDeTri(id),
+    FOREIGN KEY (CommerceID) REFERENCES Commerce(id)
+);
 
 CREATE TABLE CommerceCategorieProduit (
     CommerceID INT,
@@ -114,7 +116,6 @@ CREATE TABLE CommerceCategorieProduit (
     FOREIGN KEY (CategorieID) REFERENCES CategorieProduit(id)
 );
 
-
 CREATE TABLE HistoriqueDepot (
     UtilisateurID INT,
     DepotID INT,
@@ -122,5 +123,3 @@ CREATE TABLE HistoriqueDepot (
     FOREIGN KEY (UtilisateurID) REFERENCES Utilisateur(id),
     FOREIGN KEY (DepotID) REFERENCES Depot(id)
 );
-
-
