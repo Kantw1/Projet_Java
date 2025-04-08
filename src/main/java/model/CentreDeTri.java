@@ -42,6 +42,8 @@ public class CentreDeTri {
             listePoubelle.remove(p);
         }
     }
+    
+    //il faut séparer les méthodes ajouter et supprimer
 
     public void collecterDechets() {
         System.out.println("\nCollecte des déchets par le centre de tri :");
@@ -49,6 +51,8 @@ public class CentreDeTri {
             System.out.println(" - Poubelle " + p.getId() + " à " + p.getEmplacement() + ": " + p.getQuantiteActuelle() + " unités");
         }
     }
+    
+    //penser à vider poubelle ici et la methode dans la classe poubelle
 
     public void genererStatistiques() {
         System.out.println("\nStatistiques du centre de tri :");

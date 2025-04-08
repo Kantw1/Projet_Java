@@ -1,5 +1,7 @@
 package test;
 
+//faire des tests unitaire qui comporte des assert avec la bibliotheque junit l'integrer au projet
+
 import model.*;
 import java.util.ArrayList;
 import java.util.List;

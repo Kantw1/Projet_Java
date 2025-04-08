@@ -13,6 +13,8 @@ public class Poubelle {
     private String typePoubelle;
     private int quantiteActuelle;
     private List<Depot> depots;
+    
+  //penser à vider poubelle
 
     public Poubelle(int capaciteMax, String emplacement, String typePoubelle) {
         this.id = compteurId++;

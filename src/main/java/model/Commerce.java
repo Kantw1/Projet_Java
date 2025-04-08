@@ -19,7 +19,7 @@ public class Commerce {
     public void EchangerPoints() {
         System.out.println("Points échangés contre des produits ou avantages!");
     }
-
+    //mettre dans utilisateur
     public List<String> GetCategoriesProduits() {
         return CategoriesProduits;
     }

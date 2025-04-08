@@ -65,7 +65,7 @@ public class Utilisateur {
 	        System.out.println("pas assez de points pour convertir :/");
 	    }
 	}
-
+	//recevoir une information pour generer u bon de commande
 
     public boolean AcheterProduits(Produit p) {
         if (PtsFidelite >= p.getPrixEnPoints()) {
